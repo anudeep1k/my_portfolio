@@ -1,0 +1,641 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .pf {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #e8e6ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+  }
+  .nav-logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: #7c6af7; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    background: #7c6af7;
+    color: #fff;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #6b58e8; }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 80px 40px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124,106,247,0.12);
+    border: 1px solid rgba(124,106,247,0.25);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    color: #a89ff7;
+    margin-bottom: 24px;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px;
+    background: #7c6af7;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+  .hero h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .hero h1 .accent { color: #7c6af7; }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 20px;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+  }
+  .hero-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: #7c6af7;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #6b58e8; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.35); color: #fff; }
+
+  /* HERO CARD */
+  .hero-right { position: relative; }
+  .hero-card {
+    background: #13121f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(124,106,247,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hc-avatar {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, #7c6af7, #a89ff7);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .hc-name { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .hc-role { font-size: 13px; color: #7c6af7; font-weight: 500; margin-bottom: 16px; }
+  .hc-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .hc-stat {
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .hc-stat-num { font-size: 22px; font-weight: 800; color: #fff; }
+  .hc-stat-num span { color: #7c6af7; }
+  .hc-stat-lbl { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .hc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: rgba(124,106,247,0.1);
+    border: 1px solid rgba(124,106,247,0.2);
+    color: #a89ff7;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  /* SECTION COMMON */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #7c6af7;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 40px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .skill-card {
+    background: #13121f;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: rgba(124,106,247,0.4); transform: translateY(-2px); }
+  .skill-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .si-purple { background: rgba(124,106,247,0.15); }
+  .si-teal { background: rgba(29,158,117,0.15); }
+  .si-amber { background: rgba(239,159,39,0.15); }
+  .si-coral { background: rgba(216,90,48,0.15); }
+  .skill-name { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .skill-items { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+  /* EXPERIENCE TIMELINE */
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1px 1fr;
+    gap: 0 24px;
+    padding: 0 0 40px;
+  }
+  .exp-date {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    padding-top: 4px;
+    text-align: right;
+    line-height: 1.5;
+  }
+  .exp-line-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .exp-dot {
+    width: 10px; height: 10px;
+    background: #7c6af7;
+    border-radius: 50%;
+    border: 2px solid #0a0a0f;
+    flex-shrink: 0;
+    margin-top: 5px;
+    box-shadow: 0 0 0 3px rgba(124,106,247,0.2);
+  }
+  .exp-line {
+    width: 1px;
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    margin-top: 6px;
+  }
+  .exp-last .exp-line { background: transparent; }
+  .exp-content { padding-bottom: 8px; }
+  .exp-company {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .exp-co-logo {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .co-instacart { background: #43b02a; }
+  .co-fau { background: #003087; }
+  .co-tudip { background: #e04e1e; }
+  .exp-co-name { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .exp-role { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .exp-bullets li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .exp-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 7px;
+    width: 4px; height: 4px;
+    background: #7c6af7;
+    border-radius: 50%;
+  }
+  .exp-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .metric-badge {
+    background: rgba(124,106,247,0.1);
+    border: 1px solid rgba(124,106,247,0.2);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #a89ff7;
+  }
+
+  /* STACK */
+  .stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .stack-pill {
+    background: #13121f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    transition: all 0.15s;
+    cursor: default;
+  }
+  .stack-pill:hover {
+    border-color: rgba(124,106,247,0.4);
+    color: #fff;
+    background: rgba(124,106,247,0.07);
+  }
+
+  /* CONTACT */
+  .contact-wrap {
+    background: #13121f;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-wrap::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(circle, rgba(124,106,247,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-wrap h2 { font-size: 32px; font-weight: 800; color: #fff; letter-spacing: -1px; margin-bottom: 12px; }
+  .contact-wrap p { font-size: 15px; color: rgba(255,255,255,0.45); margin-bottom: 32px; }
+  .contact-email {
+    font-size: 18px;
+    font-weight: 600;
+    color: #7c6af7;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 28px;
+  }
+  .contact-links { display: flex; gap: 12px; justify-content: center; }
+  .contact-link {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: rgba(124,106,247,0.4); color: #fff; }
+
+  /* FOOTER */
+  .footer {
+    padding: 24px 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(124,106,247,0.3); border-radius: 2px; }
+</style>
+
+<div class="pf">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">AK<span>.</span></div>
+    <div class="nav-links">
+      <a>About</a>
+      <a>Experience</a>
+      <a>Skills</a>
+      <a>Contact</a>
+    </div>
+    <button class="nav-cta" onclick="sendPrompt('Help me tailor Anudeep\'s portfolio for a specific job listing')">Hire Me ↗</button>
+  </nav>
+
+  <!-- HERO -->
+  <section style="max-width:1100px;margin:0 auto;">
+    <div class="hero">
+      <div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          Open to new opportunities
+        </div>
+        <h1>Anudeep<br><span class="accent">Kolla</span></h1>
+        <p class="hero-sub">Product Data Analyst · Analytics Engineer</p>
+        <p class="hero-desc">
+          I close the gap between data and decisions. Four years building data infrastructure, running A/B experiments, and shipping models that move real metrics — at Instacart and beyond.
+        </p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="sendPrompt('Generate a tailored cover letter for Anudeep Kolla')">View My Work ↗</button>
+          <button class="btn-outline" onclick="sendPrompt('What roles would be perfect for Anudeep Kolla based on his profile?')">Explore Roles</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hc-avatar">AK</div>
+          <div class="hc-name">Anudeep Kolla</div>
+          <div class="hc-role">Product Data Analyst @ Instacart</div>
+          <div class="hc-stats">
+            <div class="hc-stat"><div class="hc-stat-num">4<span>+</span></div><div class="hc-stat-lbl">Years Experience</div></div>
+            <div class="hc-stat"><div class="hc-stat-num">10<span>TB</span></div><div class="hc-stat-lbl">Daily Data Processed</div></div>
+            <div class="hc-stat"><div class="hc-stat-num">18<span>%</span></div><div class="hc-stat-lbl">Forecast Accuracy Gain</div></div>
+            <div class="hc-stat"><div class="hc-stat-num">12<span>%</span></div><div class="hc-stat-lbl">Conversion Lift</div></div>
+          </div>
+          <div class="hc-tags">
+            <span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Snowflake</span>
+            <span class="tag">dbt</span><span class="tag">Airflow</span><span class="tag">A/B Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="section-label">Capabilities</div>
+    <div class="section-title">What I Bring</div>
+    <p class="section-sub">End-to-end data work, from raw pipelines to boardroom-ready insights.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon si-purple">🗄</div>
+        <div class="skill-name">Data Engineering</div>
+        <div class="skill-items">Snowflake · dbt · Airflow · BigQuery<br>Redshift · MySQL · Pipeline Design</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon si-teal">🧪</div>
+        <div class="skill-name">Experimentation</div>
+        <div class="skill-items">A/B Testing · Instrumentation<br>t-tests · 95% CI · Causal Inference</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon si-amber">🤖</div>
+        <div class="skill-name">ML & Forecasting</div>
+        <div class="skill-items">scikit-learn · XGBoost · Uplift Models<br>Demand Forecasting · Backtesting</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon si-coral">📊</div>
+        <div class="skill-name">BI & Visualization</div>
+        <div class="skill-items">Tableau · Power BI · Looker<br>KPI Design · Executive Dashboards</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <div class="section-label">Career</div>
+    <div class="section-title">Experience</div>
+    <p class="section-sub">Building at the intersection of product, data, and engineering.</p>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-date">Jan 2025 – Present<br><span style="color:#7c6af7;font-weight:600;">Current</span></div>
+        <div class="exp-line-wrap">
+          <div class="exp-dot"></div>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-company">
+            <div class="exp-co-logo co-instacart">IC</div>
+            <span class="exp-co-name">Instacart · United States</span>
+          </div>
+          <div class="exp-role">Product Data Analyst</div>
+          <ul class="exp-bullets">
+            <li>Diagnosed routing inefficiencies across 3 product pods — cut order cancellations by 9%</li>
+            <li>Built Snowflake/dbt/Airflow pipelines on 10TB+ of daily order data, reducing refresh latency by 40%</li>
+            <li>Rebuilt KPI definitions & governance for fulfillment/SLA tracking, unifying reporting across Product & Ops</li>
+            <li>Developed XGBoost uplift models for promotional demand — improved prediction accuracy by 18%</li>
+            <li>Ran end-to-end A/B pricing experiments from instrumentation to conclusion; identified 12% conversion lift</li>
+          </ul>
+          <div class="exp-highlights">
+            <span class="metric-badge">↓9% Cancellations</span>
+            <span class="metric-badge">↓40% Latency</span>
+            <span class="metric-badge">↑18% Accuracy</span>
+            <span class="metric-badge">↑12% Conversion</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Jul – Dec 2024</div>
+        <div class="exp-line-wrap">
+          <div class="exp-dot" style="background:#1d9e75;box-shadow:0 0 0 3px rgba(29,158,117,0.2);"></div>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-company">
+            <div class="exp-co-logo co-fau">FAU</div>
+            <span class="exp-co-name">Florida Atlantic University</span>
+          </div>
+          <div class="exp-role">Instructional Assistant (Analyst)</div>
+          <ul class="exp-bullets">
+            <li>Automated Python workflows processing 2,000+ grade records — cut reporting time by 25%</li>
+            <li>Designed Power BI dashboards for student performance & equity trends</li>
+            <li>Applied variance analysis, correlation & z-scores to improve assessment design</li>
+            <li>Contributed to 8% improvement in average course performance via data-driven pacing adjustments</li>
+          </ul>
+          <div class="exp-highlights">
+            <span class="metric-badge" style="background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.25);color:#5dcaa5;">↑8% Perf</span>
+            <span class="metric-badge" style="background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.25);color:#5dcaa5;">↓25% Turnaround</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item exp-last">
+        <div class="exp-date">Jan 2021 – Jun 2023</div>
+        <div class="exp-line-wrap">
+          <div class="exp-dot" style="background:#d85a30;box-shadow:0 0 0 3px rgba(216,90,48,0.2);"></div>
+          <div class="exp-line"></div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-company">
+            <div class="exp-co-logo co-tudip">TU</div>
+            <span class="exp-co-name">Tudip Technologies · India</span>
+          </div>
+          <div class="exp-role">Data Analyst</div>
+          <ul class="exp-bullets">
+            <li>Revamped Tableau dashboards for SLA & defect tracking — adopted by 6 client projects</li>
+            <li>Automated MySQL scripts processing 100K+ issue logs monthly, cutting manual cycles by 30%</li>
+            <li>Python root-cause analysis on defect logs drove 15% reduction in issue recurrence</li>
+            <li>Mentored 2 junior analysts on SQL optimization and Tableau dashboard development</li>
+          </ul>
+          <div class="exp-highlights">
+            <span class="metric-badge" style="background:rgba(216,90,48,0.1);border-color:rgba(216,90,48,0.25);color:#f0997b;">↓30% Manual Work</span>
+            <span class="metric-badge" style="background:rgba(216,90,48,0.1);border-color:rgba(216,90,48,0.25);color:#f0997b;">↓15% Defects</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="section">
+    <div class="section-label">Tools & Technologies</div>
+    <div class="section-title">Full Stack</div>
+    <p class="section-sub">The complete toolkit — from raw bytes to business decisions.</p>
+    <div class="stack-grid">
+      <span class="stack-pill">Snowflake</span>
+      <span class="stack-pill">dbt</span>
+      <span class="stack-pill">Airflow</span>
+      <span class="stack-pill">BigQuery</span>
+      <span class="stack-pill">MySQL</span>
+      <span class="stack-pill">Redshift</span>
+      <span class="stack-pill">Python</span>
+      <span class="stack-pill">pandas</span>
+      <span class="stack-pill">NumPy</span>
+      <span class="stack-pill">scikit-learn</span>
+      <span class="stack-pill">XGBoost</span>
+      <span class="stack-pill">matplotlib</span>
+      <span class="stack-pill">Tableau</span>
+      <span class="stack-pill">Power BI</span>
+      <span class="stack-pill">Looker</span>
+      <span class="stack-pill">Git</span>
+      <span class="stack-pill">Jira</span>
+      <span class="stack-pill">A/B Testing</span>
+      <span class="stack-pill">Agile</span>
+      <span class="stack-pill">AWS ML</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <div class="contact-wrap">
+      <div class="section-label" style="margin-bottom:12px;">Let's Connect</div>
+      <h2>Ready to Build<br>Something Impactful?</h2>
+      <p>Open to Product Data Analyst and Analytics Engineer roles in e-commerce, marketplace, or growth-focused companies.</p>
+      <a href="mailto:kva.anudeep1@gmail.com" class="contact-email">kva.anudeep1@gmail.com</a>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/k-anudeep1" class="contact-link">LinkedIn →</a>
+        <button class="btn-primary" onclick="sendPrompt('Write a LinkedIn outreach message for Anudeep Kolla targeting a data analyst role')">Draft Outreach ↗</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2025 Anudeep Kolla · Boca Raton, FL</p>
+    <p>MS Computer Science · Florida Atlantic University</p>
+  </div>
+
+</div>
